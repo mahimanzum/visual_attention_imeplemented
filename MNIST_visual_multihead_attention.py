@@ -1,4 +1,3 @@
-'''
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, Dropout,  Conv2D, Input, Lambda, Flatten, TimeDistributed
 from tensorflow.keras.layers import Add, Reshape, MaxPooling2D, Concatenate, Embedding, RepeatVector
@@ -120,4 +119,3 @@ if __name__ == '__main__':
               validation_data=(X_test, Y_test),
               callbacks=[tbCallBack]
              )
-'''
