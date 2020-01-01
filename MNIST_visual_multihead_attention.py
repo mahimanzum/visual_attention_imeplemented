@@ -25,7 +25,7 @@ def MultiHeadsAttModel(l=8*8, d=512, dv=64, dout=512, nv = 8 ):
     v = Reshape([l, nv, dv])(v2)
     q = Reshape([l, nv, dv])(q2)
     k = Reshape([l, nv, dv])(k2)
-    att = tf.einsum('baik,baij->bakj',q, k)
+    att = tf.einsum('baik,baij->bakj',q, k)/np.sqrt(dv)
     #att = Lambda(lambda x: K.batch_dot(x[0],x[1] ,axes=[-1,-1]) / np.sqrt(dv),output_shape=(l, nv, nv))([q,k])# l, nv, nv
     #att = tf.einsum('', q, k)
     att = Lambda(lambda x:  K.softmax(x) , output_shape=(l, nv, nv))(att)
