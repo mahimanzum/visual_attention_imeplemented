@@ -1,6 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, Dropout,  Conv2D, Input, Lambda, Flatten, TimeDistributed
-from tensorflow.keras.layers import Add, Reshape, MaxPooling2D, Concatenate, Embedding, RepeatVector
+from tensorflow.keras.layers import Add, Reshape, MaxPooling2D, Concatenate, Embedding, RepeatVector, BatchNormalization
 from tensorflow.keras.models import Model
 from tensorflow.keras import backend as K
 
@@ -100,7 +100,7 @@ if __name__ == '__main__':
         x = att([x,x,x])
         x = Reshape([6,6,32])(x)   
         #x = NormL()(x)
-        x = layers.BatchNormalization()(x)
+        x = BatchNormalization()(x)
     
     x = Flatten()(x) 
     x = Dense(256, activation='relu')(x)
